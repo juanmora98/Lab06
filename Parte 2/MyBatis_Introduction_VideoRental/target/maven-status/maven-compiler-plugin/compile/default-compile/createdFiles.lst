@@ -1,0 +1,8 @@
+edu\eci\pdsw\sampleprj\dao\mybatis\mappers\ClienteMapper.class
+edu\eci\pdsw\sampleprj\dao\mybatis\mappers\ItemMapper.class
+edu\eci\pdsw\sampleprj\dao\mybatis\mappers\TipoItemMapper.class
+edu\eci\pdsw\samples\entities\Item.class
+edu\eci\pdsw\samples\entities\TipoItem.class
+edu\eci\pdsw\samples\entities\Cliente.class
+edu\eci\pdsw\samples\services\client\MyBatisExample.class
+edu\eci\pdsw\samples\entities\ItemRentado.class

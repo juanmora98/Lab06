@@ -5,22 +5,74 @@
   
 <mapper namespace="edu.eci.pdsw.sampleprj.dao.mybatis.mappers.ClienteMapper">
 	<select parameterType="map" id="consultarClientes" resultMap="ClienteResult">
-			select
-			c.nombre,
-			c.documento,
-			c.telefono,
-			c.direccion,
-			c.email,
-			c.vetado,
-			FROM VI_CLIENTES as c ;
+			select 
+                        c.nombre as cNombre,
+                        c.documento as cDocumento,
+                        c.telefono as cTelefono,
+                        c.direccion as cDireccion,
+                        c.email as cEmail,
+                        c.vetado as cVetado,
+
+                        ir.id as irId,
+                        ir.fechainiciorenta as irFechaInicioRenta,
+                        ir.fechafinrenta as irFechaFinRenta,
+
+                        i.id as iId,
+                        i.nombre as iNombre,
+                        i.descripcion as iDescripcion,
+                        i.fechalanzamiento as iFechaLanzamiento,
+                        i.tarifaxdia as iTarifaxDia,
+                        i.formatorenta as iFormatoRenta,
+                        i.genero as iGenero, 
+            
+                        ti.id as tiId,
+                        ti.descripcion as tiDescripcion
+
+                        FROM VI_CLIENTES as c 
+                        left join VI_ITEMRENTADO as ir on c.documento=ir.CLIENTES_documento 
+                        left join VI_ITEMS as i on ir.ITEMS_id=i.id 
+                        left join VI_TIPOITEM as ti on i.TIPOITEM_id=ti.id 
 	</select>
+        
+        <select id="consultarCliente" parameterType="map" resultMap="ClienteResult">
+            SELECT 
+            nombre as cNombre,
+            documento as cDocumento,
+            telefono as cTelefono,
+            direccion as cDireccion,
+            email as cEmail,
+            vetado as cVetado
+            FROM VI_CLIENTES
+            WHERE documento = #{idcli}
+        </select>
 	<resultMap type='Cliente' id='ClienteResult'>
-		<id property='documento' column='c.documento'/>
-		<result property='nombre' column='c.nombre'/>
-		<result property='telefono' column='c.telefono'/> 
-		<result property='email' column='c.email'/>
-		<result property='vetado' column='c.vetado'/>      
-		<collection property='rentados' ofType='ItemRentado'></collection>
+		<id property='documento' column='cDocumento'/>
+		<result property='nombre' column='cNombre'/>
+		<result property='telefono' column='cTelefono'/> 
+		<result property='email' column='cEmail'/>
+                <result property='direccion' column='cDireccion'/>
+		<result property='vetado' column='cVetado'/>      
+		<collection property='rentados' ofType='ItemRentado' resultMap='ItemRentadoResult'></collection>
+	</resultMap>
+        <resultMap type='Item' id='ItemResult'>
+		<id property='id' column='iId'/>
+		<result property='nombre' column='iNombre'/>
+		<result property='descripcion' column='iDescripcion'/> 
+		<result property='fechaLanzamiento' column='iFechaLanzamiento'/>
+		<result property='tarifaxDia' column='iTarifaxDia'/>
+		<result property='formatoRenta' column='iFormatoRenta'/>
+		<result property='genero' column='iGenero'/>
+		<association property="tipo" javaType="TipoItem"></association>
+	</resultMap>
+        <resultMap type='ItemRentado' id='ItemRentadoResult'>
+		<id property='id' column='irId'/>
+		<result property='fechainiciorenta' column='irFechaInicioRenta'/>
+		<result property='fechafinrenta' column='irFechaFinRenta'/>
+                <association property="item" javaType="Item"></association>
+	</resultMap>
+        <resultMap type='TipoItem' id='TipoItemResult'>
+		<id property='id' column='tiId'/>
+		<result property='descripcion' column='tiDescripcion'/>
 	</resultMap>
           	
 </mapper>

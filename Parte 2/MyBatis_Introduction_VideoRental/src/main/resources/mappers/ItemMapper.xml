@@ -19,13 +19,13 @@
 			FROM VI_ITEMS as i;
 	</select>
 	<resultMap type='Item' id='ItemResult'>
-		<id property='id' column='i.id'/>
-		<result property='nombre' column='i.nombre'/>
-		<result property='descripcion' column='i.descripcion'/> 
-		<result property='fechaLanzamiento' column='i.fechalanzamiento'/>
-		<result property='tarifaxDia' column='i.tarifaxdia'/>
-		<result property='formatoRenta' column='i.formatorenta'/>
-		<result property='genero' column='i.genero'/>
+		<id property='id' column='iId'/>
+		<result property='nombre' column='iNombre'/>
+		<result property='descripcion' column='iDescripcion'/> 
+		<result property='fechaLanzamiento' column='iFechaLanzamiento'/>
+		<result property='tarifaxDia' column='iTarifaxDia'/>
+		<result property='formatoRenta' column='iFormatoRenta'/>
+		<result property='genero' column='iGenero'/>
 		<association property="tipo" javaType="TipoItem"></association>
 	</resultMap>
 

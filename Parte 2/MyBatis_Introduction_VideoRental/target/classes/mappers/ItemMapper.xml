@@ -4,7 +4,30 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
 <mapper namespace="edu.eci.pdsw.sampleprj.dao.mybatis.mappers.ItemMapper">
+	<select parameterType="map" id="consultarItems" resultMap="ItemResult">
+			select
+			i.id ,
+			i.nombre ,
+			i.descripcion ,
+			i.fechalanzamiento ,
+			i.tarifaxdia ,
+			i.formatorenta ,
+			i.genero ,
+			i.tipoitem_id
 
+		
+			FROM VI_ITEMS as i;
+	</select>
+	<resultMap type='Item' id='ItemResult'>
+		<id property='id' column='iId'/>
+		<result property='nombre' column='iNombre'/>
+		<result property='descripcion' column='iDescripcion'/> 
+		<result property='fechaLanzamiento' column='iFechaLanzamiento'/>
+		<result property='tarifaxDia' column='iTarifaxDia'/>
+		<result property='formatoRenta' column='iFormatoRenta'/>
+		<result property='genero' column='iGenero'/>
+		<association property="tipo" javaType="TipoItem"></association>
+	</resultMap>
 
     
     

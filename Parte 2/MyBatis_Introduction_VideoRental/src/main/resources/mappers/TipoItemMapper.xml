@@ -13,8 +13,8 @@
 				FROM VI_TIPOITEM as it;
 	</select>
     <resultMap type='TipoItem' id='TipoItemResult'>
-		<id property='id' column='it.id'/>
-		<result property='descripcion' column='it.descripcion'/>
+		<id property='id' column='tiId'/>
+		<result property='descripcion' column='tiDescripcion'/>
 	</resultMap>
 
                 
