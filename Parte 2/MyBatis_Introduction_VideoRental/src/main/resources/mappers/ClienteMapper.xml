@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="edu.eci.pdsw.sampleprj.dao.mybatis.mappers.ClienteMapper">
+	<select parameterType="map" id="consultarClientes" resultMap="ClienteResult">
+			select
+			c.nombre,
+			c.documento,
+			c.telefono,
+			c.direccion,
+			c.email,
+			c.vetado,
+			FROM VI_CLIENTES as c ;
+	</select>
+	<resultMap type='Cliente' id='ClienteResult'>
+		<id property='documento' column='c.documento'/>
+		<result property='nombre' column='c.nombre'/>
+		<result property='telefono' column='c.telefono'/> 
+		<result property='email' column='c.email'/>
+		<result property='vetado' column='c.vetado'/>      
+		<collection property='rentados' ofType='ItemRentado'></collection>
+	</resultMap>
+          	
+</mapper>
